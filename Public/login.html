@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Iniciar Sesión | KS Dulce Encanto</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --dorado:#d4af37;--dorado2:#ffd166;
+  --glass:rgba(255,255,255,.18);--shadow:0 20px 60px rgba(0,0,0,.2);
+}
+body{
+  font-family:'Jost',sans-serif;min-height:100vh;
+  background:linear-gradient(rgba(0,0,0,.32),rgba(0,0,0,.32)),
+  url('https://images.unsplash.com/photo-1559622214-f8a9850965bb?auto=format&fit=crop&w=1600&q=80') center/cover;
+  display:flex;flex-direction:column;color:white;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;
+  background:linear-gradient(135deg,rgba(157,78,221,.38),rgba(244,172,183,.48));
+  backdrop-filter:blur(3px);z-index:-1;
+}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.particle{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);animation:float linear infinite;}
+@keyframes float{0%{transform:translateY(100vh);opacity:0;}10%{opacity:.7;}90%{opacity:.3;}100%{transform:translateY(-30px);opacity:0;}}
+.main-header{padding:22px 5%;position:relative;z-index:10;}
+.logo-link{display:flex;align-items:center;gap:14px;text-decoration:none;color:white;}
+.logo-img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.5);box-shadow:0 8px 25px rgba(0,0,0,.2);}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;letter-spacing:2px;font-weight:600;}
+.brand-tagline{opacity:.75;font-size:.76rem;letter-spacing:1px;text-transform:uppercase;}
+.login-scope{flex:1;display:flex;justify-content:center;align-items:center;padding:20px;position:relative;z-index:10;}
+.login-card{
+  width:100%;max-width:440px;
+  background:var(--glass);backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.22);padding:46px 38px;border-radius:28px;
+  box-shadow:var(--shadow);animation:slideUp .9s cubic-bezier(.22,1,.36,1);
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(50px);}to{opacity:1;transform:translateY(0);}}
+.login-header{text-align:center;margin-bottom:36px;}
+.icon-wrap{
+  width:66px;height:66px;background:linear-gradient(135deg,var(--dorado),var(--dorado2));
+  border-radius:20px;display:flex;align-items:center;justify-content:center;
+  font-size:28px;margin:0 auto 16px;box-shadow:0 10px 30px rgba(212,175,55,.4);
+}
+.login-header h2{font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:8px;font-weight:700;}
+.login-header p{opacity:.82;font-size:.9rem;font-weight:300;}
+.form-group{margin-bottom:20px;}
+label{display:block;margin-bottom:8px;font-weight:500;font-size:.87rem;letter-spacing:.5px;opacity:.92;}
+.input-wrapper{
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);
+  border-radius:14px;display:flex;align-items:center;overflow:hidden;transition:all .3s;
+}
+.input-wrapper:focus-within{border-color:rgba(255,255,255,.65);background:rgba(255,255,255,.2);transform:translateY(-1px);}
+input{width:100%;padding:15px 16px;border:none;outline:none;background:none;color:white;font-size:.94rem;font-family:'Jost',sans-serif;}
+input::placeholder{color:rgba(255,255,255,.58);}
+.toggle-password{padding:0 16px;cursor:pointer;font-size:.8rem;font-weight:600;opacity:.65;transition:.2s;white-space:nowrap;}
+.toggle-password:hover{opacity:1;}
+.form-options{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:26px;font-size:.87rem;}
+.remember-me{display:flex;gap:8px;align-items:center;cursor:pointer;}
+.remember-me input[type="checkbox"]{width:auto;accent-color:var(--dorado);}
+.forgot-link{color:#fff8dc;text-decoration:none;opacity:.88;transition:.2s;}
+.forgot-link:hover{opacity:1;text-decoration:underline;}
+.btn-primary{
+  width:100%;border:none;padding:16px;font-size:.95rem;font-weight:600;border-radius:14px;
+  background:linear-gradient(45deg,var(--dorado),var(--dorado2));color:#3d2200;
+  cursor:pointer;transition:all .3s;box-shadow:0 8px 25px rgba(212,175,55,.4);
+  font-family:'Jost',sans-serif;letter-spacing:.5px;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(212,175,55,.55);}
+.btn-primary:disabled{opacity:.7;cursor:not-allowed;transform:none;}
+.divider{display:flex;align-items:center;gap:12px;margin:22px 0;opacity:.55;font-size:.82rem;}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.38);}
+.login-footer-links{text-align:center;font-size:.9rem;}
+.login-footer-links a{color:#fff4c4;font-weight:600;text-decoration:none;}
+.login-footer-links a:hover{text-decoration:underline;}
+.main-footer{padding:22px 5%;position:relative;z-index:10;}
+.footer-content{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:.84rem;opacity:.78;}
+.social-links{display:flex;gap:10px;}
+.social-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;text-decoration:none;background:rgba(255,255,255,.18);color:white;font-size:.76rem;font-weight:700;transition:.3s;}
+.social-icon:hover{background:rgba(255,255,255,.3);transform:translateY(-3px);}
+.toast{
+  position:fixed;top:24px;right:24px;padding:14px 22px;border-radius:14px;
+  color:white;font-weight:600;font-size:.88rem;z-index:1000;
+  transform:translateX(240px);opacity:0;transition:all .4s cubic-bezier(.22,1,.36,1);
+  max-width:320px;box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+.toast.show{transform:translateX(0);opacity:1;}
+.toast.success{background:linear-gradient(135deg,#2ecc71,#27ae60);}
+.toast.error{background:linear-gradient(135deg,#e74c3c,#c0392b);}
+.fb-badge{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:12px;padding:10px 16px;margin-bottom:20px;font-size:.8rem;
+  opacity:.85;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.fb-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+@media(max-width:480px){.login-card{padding:34px 22px;border-radius:22px;}.login-header h2{font-size:1.7rem;}.brand-name{font-size:1.2rem;}.logo-img{width:50px;height:50px;}}
+</style>
+</head>
+<body>
+<div class="particles" id="particles"></div>
+
+<!-- ── FIREBASE SDK ────────────────────────────────────────── -->
+<script type="module">
+  import { initializeApp }                          from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword,
+           onAuthStateChanged, signOut }             from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc, setDoc }      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyDVZowS6-lY5_OcMvn0sk93e9pJB5n3NjM",
+    authDomain:        "ks-dulce-encanto-9985c.firebaseapp.com",
+    databaseURL:       "https://ks-dulce-encanto-9985c-default-rtdb.firebaseio.com",
+    projectId:         "ks-dulce-encanto-9985c",
+    storageBucket:     "ks-dulce-encanto-9985c.firebasestorage.app",
+    messagingSenderId: "105302824996",
+    appId:             "1:105302824996:web:dcf6d225344f2471d5e0b1",
+    measurementId:     "G-19F775J3PB"
+  };
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+
+  // Si ya hay sesión activa, redirigir
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const snap = await getDoc(doc(db, 'users', user.uid));
+      const userData = snap.exists() ? snap.data() : { name: user.email, role: 'cliente' };
+      localStorage.setItem('ks_session', JSON.stringify({ uid: user.uid, ...userData }));
+      window.location.href = 'index.html';
+    }
+  });
+
+  // Login
+  document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email    = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    const btn      = document.getElementById('loginBtn');
+    btn.textContent = 'Ingresando...'; btn.disabled = true;
+
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      const snap = await getDoc(doc(db, 'users', cred.user.uid));
+      const userData = snap.exists()
+        ? snap.data()
+        : { name: cred.user.displayName || email, role: 'cliente' };
+
+      localStorage.setItem('ks_session', JSON.stringify({ uid: cred.user.uid, ...userData }));
+      if (document.getElementById('rememberMe').checked) localStorage.setItem('ks_remember', email);
+
+      showToast(`¡Bienvenido, ${userData.name}! 🍰`, 'success');
+      setTimeout(() => window.location.href = 'index.html', 1200);
+
+    } catch (err) {
+      const msg = {
+        'auth/user-not-found':    'No existe una cuenta con ese correo',
+        'auth/wrong-password':    'Contraseña incorrecta',
+        'auth/invalid-credential':'Correo o contraseña incorrectos',
+        'auth/too-many-requests': 'Demasiados intentos. Intenta más tarde',
+        'auth/invalid-email':     'Correo no válido',
+      }[err.code] || 'Error al iniciar sesión';
+      showToast(msg, 'error');
+      btn.textContent = 'Entrar a la Pastelería'; btn.disabled = false;
+    }
+  });
+</script>
+
+<header class="main-header">
+  <div class="logo-link">
+    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=100&h=100&fit=crop" class="logo-img" alt="KS Dulce Encanto">
+    <div>
+      <h1 class="brand-name">KS DULCE ENCANTO</h1>
+      <small class="brand-tagline">El arte de la pastelería artesanal</small>
+    </div>
+  </div>
+</header>
+
+<main class="login-scope">
+  <section class="login-card">
+    <div class="login-header">
+      <div class="icon-wrap">🍰</div>
+      <h2>Bienvenido de nuevo</h2>
+      <p>Ingresa para descubrir nuestras dulces creaciones.</p>
+    </div>
+
+    <div class="fb-badge">
+      <span class="fb-dot"></span>
+      Conectado a Firebase Auth
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Correo Electrónico</label>
+        <div class="input-wrapper">
+          <input type="email" id="username" placeholder="email@ejemplo.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <div class="input-wrapper">
+          <input type="password" id="password" placeholder="Tu contraseña" required>
+          <span class="toggle-password" onclick="togglePassword()">Ver</span>
+        </div>
+      </div>
+      <div class="form-options">
+        <label class="remember-me"><input type="checkbox" id="rememberMe"> Recordarme</label>
+        <a href="#" class="forgot-link" id="forgotLink">¿Olvidaste tu clave?</a>
+      </div>
+      <button class="btn-primary" type="submit" id="loginBtn">Entrar a la Pastelería</button>
+    </form>
+
+    <div class="divider">o</div>
+    <div class="login-footer-links">
+      <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <div><p>© 2026 <strong>KS Dulce Encanto</strong></p><p>Hecho con amor 🍰</p></div>
+    <nav class="social-links">
+      <a href="#" class="social-icon">FB</a>
+      <a href="#" class="social-icon">IG</a>
+      <a href="#" class="social-icon">WA</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Partículas decorativas
+const pc = document.getElementById('particles');
+for(let i=0;i<18;i++){
+  const p=document.createElement('div'); p.className='particle';
+  p.style.cssText=`left:${Math.random()*100}%;width:${4+Math.random()*5}px;height:${4+Math.random()*5}px;animation-duration:${7+Math.random()*10}s;animation-delay:${Math.random()*8}s;`;
+  pc.appendChild(p);
+}
+
+function showToast(msg, type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className=`toast ${type} show`;
+  setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+function togglePassword(){
+  const p=document.getElementById('password'), b=document.querySelector('.toggle-password');
+  if(p.type==='password'){p.type='text'; b.textContent='Ocultar';}
+  else{p.type='password'; b.textContent='Ver';}
+}
+
+// Auto-rellenar recordarme
+const rem = localStorage.getItem('ks_remember');
+if(rem){ document.getElementById('username').value=rem; document.getElementById('rememberMe').checked=true; }
+
+// Recuperar contraseña
+document.getElementById('forgotLink').addEventListener('click', async function(e){
+  e.preventDefault();
+  const email = document.getElementById('username').value.trim();
+  if(!email){ showToast('Ingresa tu correo primero','error'); return; }
+  // Se maneja en el módulo de Firebase
+  window.__sendReset && window.__sendReset(email);
+});
+</script>
+
+<!-- Reset password handler -->
+<script type="module">
+  import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { initializeApp, getApps }          from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+  const auth = getAuth();
+  window.__sendReset = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      const t=document.getElementById('toast');
+      t.textContent='📧 Correo de recuperación enviado'; t.className='toast success show';
+      setTimeout(()=>t.classList.remove('show'),3500);
+    } catch(err){
+      const t=document.getElementById('toast');
+      t.textContent='Error al enviar correo'; t.className='toast error show';
+      setTimeout(()=>t.classList.remove('show'),3500);
+    }
+  };
+</script>
+</body>
+</html>
